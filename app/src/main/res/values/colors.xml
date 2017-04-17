@@ -2,7 +2,9 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#88E306</color>
     <color name="fontColor">#000</color>
     <color name="buttonColor">#FFFFFF</color>
+    <color name="logoutButton">#666666</color>
+
 </resources>

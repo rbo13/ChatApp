@@ -14,21 +14,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+import helpers.FirebaseClient;
 
-    private FirebaseAuth mFirebaseAuth;
+public class MainActivity extends AppCompatActivity {
 
     private EditText email;
     private EditText password;
     private Button submit;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mFirebaseAuth = FirebaseAuth.getInstance();
 
         email = (EditText) findViewById(R.id.emailEditId);
         password = (EditText) findViewById(R.id.passwordEditId);
@@ -44,49 +41,44 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final String emailField = email.getText().toString().trim();
-                final String passwordField = password.getText().toString().trim();
+            final String emailField = email.getText().toString().trim();
+            final String passwordField = password.getText().toString().trim();
 
-                if(emailField.isEmpty() || passwordField.isEmpty()) {
+            if(emailField.isEmpty() || passwordField.isEmpty()) {
 
-                    Toast.makeText(getApplicationContext(), "Fields must not be empty!", Toast.LENGTH_SHORT).show();
-                }else {
+                Toast.makeText(getApplicationContext(), "Fields must not be empty!", Toast.LENGTH_SHORT).show();
+            }else {
 
-                    // Proceed to authentication
-                    mFirebaseAuth.signInWithEmailAndPassword(emailField, passwordField)
-                            .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if(task.isSuccessful()) {
+                // Proceed to authentication
+                FirebaseClient firebaseClient = new FirebaseClient();
+                firebaseClient.loginUserWithEmailAndPassword(emailField, passwordField)
+                    .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                        /**
-                                         * If authentication is successful,
-                                         * proceed to ChatView.
-                                         */
-                                        loadChatView();
-                                    } else {
+                        if(task.isSuccessful()) {
 
-                                        /**
-                                         * If the user has not registered,
-                                         * then create his account since
-                                         * we don't have a view to register
-                                         * a user.
-                                         */
-                                        signUpUser(emailField, passwordField);
-                                    }
-                                }
-                            });
-                }
+                            /**
+                             * If authentication is successful,
+                             * proceed to ChatView.
+                             */
+                            loadChatView();
+                        } else {
+
+                            /**
+                             * If the user has not registered,
+                             * then create his account since
+                             * we don't have a view to register
+                             * a user.
+                             */
+                            signUpUser(emailField, passwordField);
+                        }
+                        }
+                    });
+            }
             }
         });
     }
-
-    //    public void doLogin(View view) {
-//        Toast.makeText(this, "Do login...", Toast.LENGTH_SHORT).show();
-//
-//
-//
-//    }
 
     /**
      * @description This method handles User Signup.
@@ -94,13 +86,12 @@ public class MainActivity extends AppCompatActivity {
      * @param passwordField
      */
     private void signUpUser(String emailField, String passwordField) {
-        mFirebaseAuth.createUserWithEmailAndPassword(emailField, passwordField)
-                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+        FirebaseClient firebaseClient = new FirebaseClient();
+        firebaseClient.registerUser(emailField, passwordField)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
                         if(task.isSuccessful()) {
-                            // Successfully authenticated, load chat view
                             loadChatView();
                         }else {
                             Toast.makeText(MainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
