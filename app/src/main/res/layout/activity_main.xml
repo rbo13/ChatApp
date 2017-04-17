@@ -38,12 +38,13 @@
         android:layout_marginTop="32dp">
         
         <EditText
-            android:id="@+id/usernameEditId"
+            android:id="@+id/emailEditId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
+            android:inputType="textEmailAddress"
             android:padding="16dp"
-            android:hint="@string/username"/>
+            android:hint="@string/email"/>
         
     </android.support.design.widget.TextInputLayout>
 
@@ -78,7 +79,6 @@
         android:layout_marginRight="24dp"
         android:clickable="true"
         android:textColor="@color/buttonColor"
-        android:onClick="doLogin"
         android:text="@string/login_signup"
         android:background="@drawable/rounded_button"/>
 
