@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.b0kn0y.chatapp.MainActivity"
+    android:background="#FFF">
+
+    <TextView
+        android:id="@+id/textId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/fontColor"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:gravity="center"/>
+
+    <View
+        android:id="@+id/viewId"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#D9E0E5"
+        android:paddingBottom="16dp"
+        android:layout_below="@+id/textId"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/usernameContainerId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewId"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="8dp"
+        android:layout_marginTop="32dp">
+        
+        <EditText
+            android:id="@+id/usernameEditId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:padding="16dp"
+            android:hint="@string/username"/>
+        
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/passwordContainerId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usernameContainerId"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp">
+
+        <EditText
+            android:id="@+id/passwordEditId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:hint="@string/password"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_below="@+id/passwordContainerId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:clickable="true"
+        android:textColor="@color/buttonColor"
+        android:text="@string/login_signup"
+        android:background="@drawable/rounded_button"/>
+
+    <include layout="@layout/terms"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/submit"/>
+
+
+</RelativeLayout>
