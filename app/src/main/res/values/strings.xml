@@ -9,4 +9,6 @@
         Others will be able to find you by searching for your email address or phone number when provided.
     </string>
     <string name="logout">Logout</string>
+    <string name="send">Send</string>
+    <string name="new_message">Start a new message</string>
 </resources>
