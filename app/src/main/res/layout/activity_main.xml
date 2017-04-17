@@ -78,6 +78,7 @@
         android:layout_marginRight="24dp"
         android:clickable="true"
         android:textColor="@color/buttonColor"
+        android:onClick="doLogin"
         android:text="@string/login_signup"
         android:background="@drawable/rounded_button"/>
 
